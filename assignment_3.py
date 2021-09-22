@@ -16,7 +16,7 @@ number_in_feet_fiber_optic = float(number_in_feet_fiber_optic)
 cost_per_feet = 0.87
 total_cost = number_in_feet_fiber_optic * cost_per_feet
 final_statement = f"\nThe total cost for {company_name} is {total_cost}\n"
-print(final_statement)
+print()
 
 # Review
 # 10: Created a variable that holds a string of welcome message
