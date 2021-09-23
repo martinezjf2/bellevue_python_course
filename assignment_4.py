@@ -24,9 +24,10 @@ elif number_in_feet_fiber_optic >= 500:
 else:
     cost_per_feet = .87
 
-
 total_cost = number_in_feet_fiber_optic * cost_per_feet
-final_statement = f"\nThe total cost for {company_name} is {total_cost}\n"
+
+
+final_statement = f"\nThe total cost for {company_name} for {number_in_feet_fiber_optic} feet is ${total_cost}\n"
 print(final_statement)
 
 # Review
@@ -49,3 +50,6 @@ print(final_statement)
 # 30: Made sure to use the print function to output and display my final statement to my user
 
 # github repo link: https://github.com/martinezjf2/bellevue_python_course
+
+
+
