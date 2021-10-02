@@ -1,3 +1,6 @@
+
+
+
 # Using your flowchart and pseudocode from week 2, write a program that will calculate the cost of installing fiber optic cable at a cost of .87 per ft for a company. Your program should display the company name and the total cost. 
 
 # Steps:
