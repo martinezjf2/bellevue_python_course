@@ -1,10 +1,6 @@
 import requests
 
 key = '6e9453ed5d0d32a75cdda44139ae651d'
-api_call = 'api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}'
-
-
-
 
 def get_weather(name):
     request = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+ name + '&appid=' + key)
@@ -18,6 +14,7 @@ def display_weather():
     print()
     
 def validate_request(request):
+    print(request.status_code)
     if (request.status_code == requests.codes.ok):
         promise = request.json()
         retrieve_details(promise)
@@ -31,16 +28,18 @@ def retrieve_details(promise):
     temperature = promise["main"]["temp"]
     temp_min = promise["main"]["temp_min"]
     temp_max = promise["main"]["temp_max"]
+    name = promise['name']
+    print("City Name: ", name)
     print("Main: ", main)
     print("Desciption: ", description)
     print("Temperature: ", temperature)
     print("Temp Max ", temp_max)
     print("Temp Min ", temp_min)
     
-def kelvin_to_fahrenheit(temp):
+def kelvin_to_fahrenheit(temp, temp_min, temp_max):
     print()
     
-def kelvin_to_celsius(temp):
+def kelvin_to_celsius(temp, temp_min, temp_max):
     print()
     
 def closing_or_choose():
