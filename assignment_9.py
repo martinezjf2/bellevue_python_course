@@ -8,9 +8,7 @@ api_call = 'api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key
 
 def get_weather(name):
     request = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+ name + '&appid=' + key)
-    validate_request(request)
-
-    
+    validate_request(request) 
     
 def user_input():
     city_name = input('Please type in the city: ')
@@ -30,9 +28,22 @@ def validate_request(request):
 def retrieve_details(promise):
     main = promise['weather'][0]['main']
     description = promise['weather'][0]['description']
-    print("Main: " + main)
-    print("Desciption: " + description)
+    temperature = promise["main"]["temp"]
+    temp_min = promise["main"]["temp_min"]
+    temp_max = promise["main"]["temp_max"]
+    print("Main: ", main)
+    print("Desciption: ", description)
+    print("Temperature: ", temperature)
+    print("Temp Max ", temp_max)
+    print("Temp Min ", temp_min)
     
+def kelvin_to_fahrenheit(temp):
+    print()
     
+def kelvin_to_celsius(temp):
+    print()
+    
+def closing_or_choose():
+    print()
     
 user_input()
