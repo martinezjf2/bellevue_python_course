@@ -43,7 +43,9 @@ def choose_units(city_name):
     
     
 def display_weather(name, main, description, temperature, temp_max, temp_min, units):
-    print(units)
+    
+    z = display_units_of_measurement(units)
+    print(z)
     print("\nCity Name: ", name)
     print("Main: ", main)
     print("Desciption: ", description)
@@ -52,6 +54,16 @@ def display_weather(name, main, description, temperature, temp_max, temp_min, un
     print("Temp Min ", temp_min, '\n')
     closing_or_choose()
     
+    
+def display_units_of_measurement(units):
+    print(units)
+    if (units == 'metric'):
+        return 'degrees Celsius'
+    elif (units == 'imperial'):
+        return 'degrees Fahrenheit'
+    elif (units == 'kelvin'):
+        return 'Kelvin'
+
 def validate_request(request, units):
     # print(f"Status Code: {request.status_code}")
     if (request.status_code == requests.codes.ok):
@@ -70,12 +82,6 @@ def retrieve_details(promise, units):
     name = promise['name']
     display_weather(name, main, description, temperature, temp_max, temp_min, units)
     
-def kelvin_to_fahrenheit(temp, temp_min, temp_max):
-    print()
-    
-def kelvin_to_celsius(temp, temp_min, temp_max):
-    print()
-    
 # def type_zip_or_city_name():
 #     city_or_zip = input("Type '1' to input zip OR type '2' to input city name")
 #     if (city_or_zip == '1'):
@@ -85,7 +91,6 @@ def kelvin_to_celsius(temp, temp_min, temp_max):
 #         user_input()
     
 def check_units_of_measure(input):
-    print(input)
     if (input == '1'):
        return 'metric'
     elif (input == '2'):
