@@ -15,7 +15,9 @@ def welcome():
     print("\nWelcome to the Weather App! Let's Get Started\n")
 
 def get_weather(name):
-    request = requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={name}&appid={KEY}")
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={name}&appid={KEY}"
+    request = requests.get(url)
+    # https://www.youtube.com/watch?v=lcWfSn6-m_8 video on how to use the requests to retreive data
     validate_request(request) 
     
 def user_input():
