@@ -2,24 +2,41 @@ import requests
 
 key = '6e9453ed5d0d32a75cdda44139ae651d'
 
+def main():
+    welcome()
+    user_input()
+    print()
+    
+def welcome():
+    print("\nWelcome to the Weather App! Let's Get Started\n")
+
 def get_weather(name):
     request = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+ name + '&appid=' + key)
     validate_request(request) 
     
 def user_input():
     city_name = input('Please type in the city: ')
-    get_weather(city_name)
+    if (city_name == 'exit' or city_name == 'Exit' or city_name == 'quit' or city_name == 'Quit' or city_name == 'q' or city_name == 'Q'):
+        print("\nThank you! Hope you have a great day!\n") 
+    else:
+        get_weather(city_name)
     
-def display_weather():
-    print()
+def display_weather(name, main, description, temperature, temp_max, temp_min):
+    print("\nCity Name: ", name)
+    print("Main: ", main)
+    print("Desciption: ", description)
+    print("Temperature: ", temperature)
+    print("Temp Max ", temp_max)
+    print("Temp Min ", temp_min, '\n')
+    closing_or_choose()
     
 def validate_request(request):
-    print(request.status_code)
+    print("Status Code: ", request.status_code)
     if (request.status_code == requests.codes.ok):
         promise = request.json()
         retrieve_details(promise)
     else:
-        print("Please Provide with a Valid City Name")
+        print("Please Provide with a Valid City Name: \n")
         user_input()
     
 def retrieve_details(promise):
@@ -29,12 +46,7 @@ def retrieve_details(promise):
     temp_min = promise["main"]["temp_min"]
     temp_max = promise["main"]["temp_max"]
     name = promise['name']
-    print("City Name: ", name)
-    print("Main: ", main)
-    print("Desciption: ", description)
-    print("Temperature: ", temperature)
-    print("Temp Max ", temp_max)
-    print("Temp Min ", temp_min)
+    display_weather(name, main, description, temperature, temp_max, temp_min)
     
 def kelvin_to_fahrenheit(temp, temp_min, temp_max):
     print()
@@ -43,6 +55,13 @@ def kelvin_to_celsius(temp, temp_min, temp_max):
     print()
     
 def closing_or_choose():
-    print()
+    choose_input = input("Type '1' to type another city, or Type 'exit' to quit: \n")
+    if (choose_input == '1'):
+        user_input()
+    elif (choose_input == 'exit' or choose_input == 'Exit'):
+        print("\nThank you! Hope you have a great day!\n")
+    else:
+        print("\nPlease type in a valid choice:  \n")
+        closing_or_choose()
     
-user_input()
+main()
