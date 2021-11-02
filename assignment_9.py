@@ -1,6 +1,9 @@
 import requests
+import os
+from dotenv import load_dotenv
 
-key = '6e9453ed5d0d32a75cdda44139ae651d'
+load_dotenv()
+KEY = os.getenv("KEY")
 
 def main():
     welcome()
@@ -11,7 +14,7 @@ def welcome():
     print("\nWelcome to the Weather App! Let's Get Started\n")
 
 def get_weather(name):
-    request = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+ name + '&appid=' + key)
+    request = requests.get(f"http://api.openweathermap.org/data/2.5/weather?q={name}&appid={KEY}")
     validate_request(request) 
     
 def user_input():
