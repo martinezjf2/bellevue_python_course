@@ -1,6 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+# https://www.youtube.com/watch?v=YdgIWTYQ69A Hide API Keys in Python using python-dotenvm .env, and gitignore
 
 load_dotenv()
 KEY = os.getenv("KEY")
