@@ -31,7 +31,7 @@ def display_weather(name, main, description, temperature, temp_max, temp_min):
     closing_or_choose()
     
 def validate_request(request):
-    print("Status Code: ", request.status_code)
+    print(f"Status Code: {request.status_code}")
     if (request.status_code == requests.codes.ok):
         promise = request.json()
         retrieve_details(promise)
