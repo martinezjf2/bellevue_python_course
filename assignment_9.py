@@ -33,17 +33,25 @@ def user_input():
     city_name = input('Please type in the city: ')
     if (city_name == 'exit' or city_name == 'Exit' or city_name == 'quit' or city_name == 'Quit' or city_name == 'q' or city_name == 'Q'):
         print("\nThank you! Hope you have a great day!\n")
-    choose_units(city_name)    
+    else: 
+        choose_units(city_name)    
         
         
 def choose_units(city_name):       
     choose_unit = input("Type '1' for metric, Type '2' for standard, or Type '3' for imperial: ")
     unit = check_units_of_measure(choose_unit)
-    get_weather(city_name, unit)
-    
+    if (unit == False):
+        print("Please input a Valid Number!")
+        choose_units(city_name)
+    else:
+        get_weather(city_name, unit)
+    # may need an if/else statement to check here
+   
+# def define_unit():
+#     choose_unit = input("Type '1' for metric, Type '2' for standard, or Type '3' for imperial: ")
+#     choose_units()
     
 def display_weather(name, main, description, temperature, temp_max, temp_min, units):
-    
     z = display_units_of_measurement(units)
     print(z)
     print("\nCity Name: ", name)
@@ -56,7 +64,6 @@ def display_weather(name, main, description, temperature, temp_max, temp_min, un
     
     
 def display_units_of_measurement(units):
-    print(units)
     if (units == 'metric'):
         return 'degrees Celsius'
     elif (units == 'imperial'):
@@ -98,8 +105,8 @@ def check_units_of_measure(input):
     elif (input == '3'):
         return 'imperial'
     else:
-        print("Please type in a valid number!")
-        choose_units()
+        return False
+        
         
 
     
