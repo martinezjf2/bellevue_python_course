@@ -1,3 +1,6 @@
+
+# this is the rough draft and will continue to add on some features
+
 import requests
 import os
 from dotenv import load_dotenv
