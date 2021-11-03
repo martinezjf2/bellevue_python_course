@@ -49,19 +49,17 @@ def choose_units(city_name):
 def display_weather(name, main, description, temperature, temp_max, temp_min, units):
     
     z = display_units_of_measurement(units)
-    print(z)
     
-    print(f"\nCity Name: {name} {units} ")
-    print("Main: ", main)
-    print("Desciption: ", description)
-    print("Temperature: ", temperature)
-    print("Temp Max ", temp_max)
-    print("Temp Min ", temp_min, '\n')
+    print(f"\nCity Name: {name} ")
+    print(f"Main: {main}")
+    print(f"Desciption: {description}")
+    print(f"Temperature: {temperature} {z} ")
+    print(f"Temp Max: {temp_max} {z} ")
+    print(f"Temp Min: {temp_min} {z} " '\n')
     closing_or_choose()
     
     
 def display_units_of_measurement(units):
-    print(units)
     if (units == 'metric'):
         return 'degrees Celsius'
     elif (units == 'imperial'):
