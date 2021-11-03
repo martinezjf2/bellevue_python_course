@@ -30,7 +30,7 @@ def get_weather(name, units):
     
     
 def user_input():
-    city_name = input('Please type in the city: ')
+    city_name = input('\nPlease type in the city: ')
     if (city_name == 'exit' or city_name == 'Exit' or city_name == 'quit' or city_name == 'Quit' or city_name == 'q' or city_name == 'Q'):
         print("\nThank you! Hope you have a great day!\n")
     else: 
@@ -41,20 +41,17 @@ def choose_units(city_name):
     choose_unit = input("Type '1' for metric, Type '2' for standard, or Type '3' for imperial: ")
     unit = check_units_of_measure(choose_unit)
     if (unit == False):
-        print("Please input a Valid Number!")
+        cprint("Please input a Valid Number!", "red")
         choose_units(city_name)
     else:
         get_weather(city_name, unit)
-    # may need an if/else statement to check here
-   
-# def define_unit():
-#     choose_unit = input("Type '1' for metric, Type '2' for standard, or Type '3' for imperial: ")
-#     choose_units()
     
 def display_weather(name, main, description, temperature, temp_max, temp_min, units):
+    
     z = display_units_of_measurement(units)
     print(z)
-    print("\nCity Name: ", name)
+    
+    print(f"\nCity Name: {name} {units} ")
     print("Main: ", main)
     print("Desciption: ", description)
     print("Temperature: ", temperature)
@@ -64,12 +61,16 @@ def display_weather(name, main, description, temperature, temp_max, temp_min, un
     
     
 def display_units_of_measurement(units):
+    print(units)
     if (units == 'metric'):
         return 'degrees Celsius'
     elif (units == 'imperial'):
         return 'degrees Fahrenheit'
-    elif (units == 'kelvin'):
+    elif (units == 'standard'):
         return 'Kelvin'
+    else:
+        return False
+    
 
 def validate_request(request, units):
     # print(f"Status Code: {request.status_code}")
@@ -77,7 +78,7 @@ def validate_request(request, units):
         promise = request.json()
         retrieve_details(promise, units)
     else:
-        print("Please Provide with a Valid City Name: \n")
+        cprint("Please Provide with a Valid City Name: \n", "red")
         user_input()
     
 def retrieve_details(promise, units):
@@ -107,17 +108,15 @@ def check_units_of_measure(input):
     else:
         return False
         
-        
-
     
 def closing_or_choose():
     choose_input = input("Type '1' to type another city, or Type 'exit' to quit: \n")
     if (choose_input == '1'):
         user_input()
     elif (choose_input == 'exit' or choose_input == 'Exit'):
-        print("\nThank you! Hope you have a great day!\n")
+        cprint("\nThank you! Hope you have a great day!\n", "yellow")
     else:
-        print("\nPlease type in a valid choice:  \n")
+        cprint("\nPlease type in a valid choice:  \n", "red")
         closing_or_choose()
     
 main()
