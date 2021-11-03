@@ -41,7 +41,7 @@ def choose_units(city_name):
     choose_unit = input("Type '1' for metric, Type '2' for standard, or Type '3' for imperial: ")
     unit = check_units_of_measure(choose_unit)
     if (unit == False):
-        cprint("Please input a Valid Number!", "red")
+        cprint("\nPlease input a Valid Number!", "red")
         choose_units(city_name)
     else:
         get_weather(city_name, unit)
@@ -49,13 +49,15 @@ def choose_units(city_name):
 def display_weather(name, main, description, temperature, temp_max, temp_min, units):
     
     z = display_units_of_measurement(units)
-    
-    print(f"\nCity Name: {name} ")
-    print(f"Main: {main}")
-    print(f"Desciption: {description}")
-    print(f"Temperature: {temperature} {z} ")
-    print(f"Temp Max: {temp_max} {z} ")
-    print(f"Temp Min: {temp_min} {z} " '\n')
+    print('\n-----------------------------------------')
+    print("\n  Let's Take A Look at Today's Weather!\n")
+    print(f"\nCity Name       :    {name} ")
+    print(f"Main            :    {main}")
+    print(f"Desciption      :    {description}")
+    print(f"Temperature     :    {temperature} {z} ")
+    print(f"Temp Max        :    {temp_max} {z} ")
+    print(f"Temp Min        :    {temp_min} {z} " '\n')
+    print('\n-----------------------------------------\n')
     closing_or_choose()
     
     
@@ -76,7 +78,7 @@ def validate_request(request, units):
         promise = request.json()
         retrieve_details(promise, units)
     else:
-        cprint("Please Provide with a Valid City Name: \n", "red")
+        cprint("\nPlease Provide with a Valid City Name: \n", "red")
         user_input()
     
 def retrieve_details(promise, units):
