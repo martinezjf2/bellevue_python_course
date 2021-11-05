@@ -14,8 +14,6 @@ KEY = os.getenv("KEY")
 
 def main():
     welcome()
-    # type_zip_or_city_name()
-    # delete the user_input() call on line 16
     user_input()
     print()
     
@@ -24,7 +22,7 @@ def welcome():
     cprint("  Welcome to the Weather App! Let's Get Started  ", 'yellow')
     cprint("-------------------------------------------------\n", 'blue')
 
-
+# refractor get_weather and user_input functions
 def get_weather(name, units):
     url = f"http://api.openweathermap.org/data/2.5/weather?q={name}&appid={KEY}&units={units}"
     request = requests.get(url)
@@ -49,8 +47,9 @@ def choose_units(city_name):
     else:
         get_weather(city_name, unit)
     
-def display_weather(name, main, description, temperature, temp_max, temp_min, wind_speed, clouds, units):
+def display_weather(name, main, description, temperature, temp_max, temp_min, wind_speed, clouds, humidity, units):
     
+    c = display_units_of_measurement_for_wind_speed(units)
     z = display_units_of_measurement(units)
     print('\n-----------------------------------------')
     print("\n  Let's Take A Look at Today's Weather!\n")
@@ -60,13 +59,23 @@ def display_weather(name, main, description, temperature, temp_max, temp_min, wi
     print(f"Temperature     :    {temperature} {z} ")
     print(f"Temp Max        :    {temp_max} {z} ")
     
-    print(f"Wind Speed      :    {wind_speed}  ")
-    print(f"Clouds          :    {clouds} ")
+    print(f"Wind Speed      :    {wind_speed} {c} ")
+    print(f"Clouds          :    {clouds} %")
+    print(f"Humidity        :    {humidity} %")
     
     print(f"Temp Min        :    {temp_min} {z} " '\n')
     print('\n-----------------------------------------\n')
     closing_or_choose()
     
+def display_units_of_measurement_for_wind_speed(units):
+    if (units == 'metric'):
+        return 'meter/sec'
+    elif (units == 'imperial'):
+        return 'miles/hour'
+    elif (units == 'standard'):
+        return 'meter/sec'
+    else:
+        return False    
     
 def display_units_of_measurement(units):
     if (units == 'metric'):
@@ -97,17 +106,11 @@ def retrieve_details(promise, units):
     name = promise['name']
     wind_speed = promise['wind']['speed']
     clouds = promise['clouds']['all']
-    print(wind_speed)
-    print(clouds)
-    display_weather(name, main, description, temperature, temp_max, temp_min, wind_speed, clouds, units)
+    humidity = promise['main']['humidity']
+    # icon = promise['weather'][0]['icon']
+    # print(icon)
     
-# def type_zip_or_city_name():
-#     city_or_zip = input("Type '1' to input zip OR type '2' to input city name")
-#     if (city_or_zip == '1'):
-#         zipcode = input("Please enter a zipcode: ")
-#         get_weather_by_zip(zipcode)
-#     elif (city_or_zip == '2'):
-#         user_input()
+    display_weather(name, main, description, temperature, temp_max, temp_min, wind_speed, clouds, humidity, units)
     
 def check_units_of_measure(input):
     if (input == '1'):
