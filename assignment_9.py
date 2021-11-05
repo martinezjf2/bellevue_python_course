@@ -49,7 +49,7 @@ def choose_units(city_name):
     else:
         get_weather(city_name, unit)
     
-def display_weather(name, main, description, temperature, temp_max, temp_min, units):
+def display_weather(name, main, description, temperature, temp_max, temp_min, wind_speed, clouds, units):
     
     z = display_units_of_measurement(units)
     print('\n-----------------------------------------')
@@ -59,6 +59,10 @@ def display_weather(name, main, description, temperature, temp_max, temp_min, un
     print(f"Desciption      :    {description}")
     print(f"Temperature     :    {temperature} {z} ")
     print(f"Temp Max        :    {temp_max} {z} ")
+    
+    print(f"Wind Speed      :    {wind_speed}  ")
+    print(f"Clouds          :    {clouds} ")
+    
     print(f"Temp Min        :    {temp_min} {z} " '\n')
     print('\n-----------------------------------------\n')
     closing_or_choose()
@@ -91,7 +95,11 @@ def retrieve_details(promise, units):
     temp_min = promise["main"]["temp_min"]
     temp_max = promise["main"]["temp_max"]
     name = promise['name']
-    display_weather(name, main, description, temperature, temp_max, temp_min, units)
+    wind_speed = promise['wind']['speed']
+    clouds = promise['clouds']['all']
+    print(wind_speed)
+    print(clouds)
+    display_weather(name, main, description, temperature, temp_max, temp_min, wind_speed, clouds, units)
     
 # def type_zip_or_city_name():
 #     city_or_zip = input("Type '1' to input zip OR type '2' to input city name")
