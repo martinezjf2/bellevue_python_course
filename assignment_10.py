@@ -21,6 +21,8 @@ def write_in_file(dir, filename):
     address = input("What is your address? ")
     phone_number = input("what is your phone number? ")
     file = open(os.path.join(dir, filename), 'w')
+    file.write(f"{name}, {address}, {phone_number}")
+    file.close()
     
     
     
