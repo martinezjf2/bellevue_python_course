@@ -17,6 +17,9 @@ def ask_user_directory():
     write_in_file(directory, filename)
     
 def write_in_file(dir, filename):
+    name = input("What is your name? ")
+    address = input("What is your address? ")
+    phone_number = input("what is your phone number? ")
     file = open(os.path.join(dir, filename), 'w')
     
     
@@ -31,10 +34,8 @@ def directory_exist(dir):
         return directory
         
     
-def ask_personal_info():
-    name = input("What is your name? ")
-    address = input("What is your address? ")
-    phone_number = input("what is your phone number? ")
+
+    
     
     
 main()
