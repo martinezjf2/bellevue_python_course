@@ -15,6 +15,7 @@ def ask_user_directory():
     directory = directory_exist(directory_input)
     filename = ask_user_filename()
     write_in_file(directory, filename)
+    read_in_file(directory, filename)
     
 def write_in_file(dir, filename):
     name = input("What is your name? ")
@@ -24,7 +25,12 @@ def write_in_file(dir, filename):
     file.write(f"{name}, {address}, {phone_number}")
     file.close()
     
-    
+def read_in_file(dir, filename):
+    file = open(os.path.join(dir, filename), 'r')
+    # this will only give read access
+    for line in file:
+        print(line)
+    file.close()
     
 def directory_exist(dir):
     tru = os.path.isdir(dir)
