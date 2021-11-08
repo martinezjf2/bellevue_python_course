@@ -6,31 +6,33 @@ def main():
     print()
 
 def ask_user_filename():
-    file = input("What is the name of the file you are trying to get? ")
+    file_input = input("What is the name of the file you are trying to get? ")
+    filename = filename_exist(file_input)
+    return filename
     
 def ask_user_directory():
     directory_input = input("What is the name of the directory you are trying to get access to?")
     directory = directory_exist(directory_input)
+    filename = ask_user_filename()
     
     
 def directory_exist(dir):
-    directory = ''
     tru = os.path.isdir(dir)
     if (tru):
-        directory = dir
+        return dir
     else:
         directory = os.mkdir(dir)
         print("Folder Created")
-    return directory
+        return directory
     
 def filename_exist(file):
-    fil = ''
     tru = os.path.isfile(file)
     if (tru):
         fil = open(file, "r+")
+        return fil
     else:
         fil = open(file, "r+")
-    return fil
+        return fil
       
     
 def ask_personal_info():
