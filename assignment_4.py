@@ -52,7 +52,7 @@ print(final_statement)
 # 29: Created a variable that will hold a string including data such as the company_name and the total_cost. Instead of using string concatenation, used string interpolation
 # 30: Made sure to use the print function to output and display my final statement to my user
 
-# github repo link: https://github.com/martinezjf2/bellevue_python_course
+
 
 
 
