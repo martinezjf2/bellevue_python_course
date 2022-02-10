@@ -3,8 +3,12 @@
 # This week we will work with functions.  For this week’s assignment, write a program that uses a function to convert miles to kilometers.  Your program should prompt the user for the number of miles driven then call a function which converts miles to kilometers.  Check and validate all user input and incorporate Try/Except block(s). The program should then display the total miles and the kilometers.
 
 def main():
-    choice = int(input("\nPlease Choose an option\n\n1. Miles-to-kilometers \n2. Kilometers=to-Miles \n\nEnter a choice : "))
-    check_choice(choice)
+    try:
+        choice = int(input("\nPlease Choose an option\n\n1. Miles-to-kilometers \n2. Kilometers=to-Miles \n\nEnter a choice : "))
+        check_choice(choice)
+    except:
+        print("Invalid input. Please do not use decimals!")
+        main()
     
 
 
@@ -27,7 +31,7 @@ def check_choice(choice):
             print("\nKilometers %.3f km" %(distance_km))
             print("\nMiles %.3f mile" %(km_to_miles))
     else:
-            print("\n Wrong Input Value! Please enter a choice. 1 or 2\n")
+            print("\nWrong Input Value! Please enter a choice. 1 or 2\n")
             main()        
 
 main()
